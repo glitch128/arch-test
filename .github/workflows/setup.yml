@@ -10,14 +10,13 @@ jobs:
         with:
           node-version: '14'
       - run: wget https://mirror.archlinux32.org/archisos/archlinux32-2021.12.01-i686.iso
-      
-  create_img:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
       - run: sudo apt-get update -y
       - run: sudo apt-get install nasm gdb qemu-system-x86 libc6-dev-i386 -y
       - run: qemu-img create arch.img 10G
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: image
+          path: |
+            /
+            !/
