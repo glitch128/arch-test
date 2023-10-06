@@ -1,0 +1,21 @@
+name: setup
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [workflow_dispatch]
+jobs:
+  get_image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: wget https://mirror.archlinux32.org/archisos/archlinux32-2021.12.01-i686.iso
+      
+  create_img:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: qemu-img create arch.img 10G
