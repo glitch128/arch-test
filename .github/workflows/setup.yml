@@ -18,4 +18,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
+      - run: sudo apt-get update -y
+      - run: sudo apt-get install nasm gdb qemu-system-x86 libc6-dev-i386 -y
       - run: qemu-img create arch.img 10G
+name: Install APT packages
+        run: |
+          
+          
